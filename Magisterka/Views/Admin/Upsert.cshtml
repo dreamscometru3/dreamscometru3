@@ -1,12 +1,8 @@
 ﻿@model Magisterka.Models.ClientCodeModel
 
-@{
-    ViewBag.Title = "Upsert";
-}
 
-<h2>Upsert</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 

@@ -2,7 +2,10 @@
 
 namespace Magisterka.Controllers
 {
+    using System;
+
     using Magisterka.Database;
+    using Magisterka.ViewModels;
 
     public class HomeController : Controller
     {
@@ -12,7 +15,35 @@ namespace Magisterka.Controllers
         {
             repository.ClientCodeRepository.GetAll();
 
-            return View();
+            return View(new HomeIndexViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Index(HomeIndexViewModel model)
+        {
+            if (!string.IsNullOrEmpty(model.Message))
+            {
+                return this.View(new HomeIndexViewModel() { Message = "Kod jest wymagany" });
+            }
+
+            var code = this.repository.ClientCodeRepository.GetByCode(model.Code);
+
+            if (code == null)
+            {
+                 return this.View(new HomeIndexViewModel() { Message = "Kod nie istnieje" });
+            }
+
+            if (code.StartDate > DateTime.Now)
+            {
+                return this.View(new HomeIndexViewModel() { Message = "Możesz rozpocząc grę po godzinie " + code.StartDate.Hour });
+            }
+
+            if (code.EndDate < DateTime.Now)
+            {
+                return this.View(new HomeIndexViewModel() { Message = "Gra juz zakonczona - " + code.EndDate.Hour });
+            }
+
+            return RedirectToAction("Index", "Game", new {id = code.Id});
         }
 
         public ActionResult About()

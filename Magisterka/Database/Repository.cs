@@ -11,6 +11,7 @@ namespace Magisterka.Database
         private bool disposed = false;
 
         public ClientCodeRepository ClientCodeRepository { get { return new ClientCodeRepository(this.dbContext);} }
+        public SurveyRepository SurveyRepository { get {  return new SurveyRepository(this.dbContext);} }
 
         public Repository()
         {
