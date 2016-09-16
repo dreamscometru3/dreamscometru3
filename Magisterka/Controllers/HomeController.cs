@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Magisterka.Controllers
 {
+    using Magisterka.Database;
+
     public class HomeController : Controller
     {
+        private Repository repository = new Repository();
+
         public ActionResult Index()
         {
-            ViewBag.Message = "chuj";
+            repository.ClientCodeRepository.GetAll();
 
             return View();
         }

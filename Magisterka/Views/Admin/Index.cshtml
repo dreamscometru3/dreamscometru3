@@ -1,0 +1,45 @@
+﻿@using Magisterka.Models
+@model System.Linq.IQueryable<Magisterka.Models.ClientCodeModel>
+
+<div class="col-md-12">
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Kod</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <th>@c.Code</th>
+                    <td>@c.StartDate - @c.EndDate</td>
+                    
+                    <td>
+                       @if (c.Status == CodeStatus.NotStarted)
+                       {
+                           <span>Nie rozpoczeta</span>
+                       }
+                       
+                        @if (c.Status == CodeStatus.Started)
+                        {
+                            <span>W Trakcie</span>
+                        }
+                        
+                        @if (c.Status == CodeStatus.Completed)
+                        {
+                            <span> Zakonczona</span>
+                        }
+                    </td>
+                </tr>
+            } 
+        </tbody>
+    </table>
+
+    @Html.ActionLink("Dodaj", "Upsert", "Admin")
+
+</div>
