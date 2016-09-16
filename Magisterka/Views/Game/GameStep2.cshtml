@@ -1,4 +1,12 @@
 ﻿
 <h3>
-    Krok 2
+   Gra Testowa
 </h3>
+
+@Html.Partial("_flipTail")
+
+<script>
+    require(["/Scripts/app/gameManager.js"], function (module) {
+        module.init(true);
+    });
+</script>

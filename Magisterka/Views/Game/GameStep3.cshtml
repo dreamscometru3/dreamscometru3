@@ -1,0 +1,21 @@
+﻿
+<h3>
+   Gra z przeciwnikiem
+</h3>
+
+<div class="content">
+    <div>
+        Walniesz Tekst
+    </div>
+
+    <div style="margin-top:20px;" class="btn btn-primary startGame">Rozpocznij Grę</div>
+
+</div>
+
+@Html.Partial("_flipTail")
+
+<script>
+    require(["/Scripts/app/gameManager.js"], function (module) {
+        module.init(false, '@ViewBag.game');
+    });
+</script>
