@@ -1,0 +1,62 @@
+﻿@model Magisterka.Models.LotteryTicket
+@{
+    var res = int.Parse(ViewBag.result);
+}
+
+@if (res == 1)
+{
+    using (Html.BeginForm("GameStep4", "Game", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+         @Html.HiddenFor(model => model.ClientCode.Id)
+
+        <fieldset>
+            <div class="editor-label">
+                Twoje Losy
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserTickets)
+            </div>
+            
+            <div class="editor-label">
+                Losy przeciwnika
+            </div>
+            
+            <div class="mt-20">
+                <input id="oppResult" disabled="" value="0"/>
+            </div>
+
+            <p style="margin-top: 20px;">
+                <input type="submit" value="Wyslij" />
+            </p>
+        </fieldset>
+    }
+
+    <script>
+        $("#UserTickets").change(function() {
+            var value = $(this).val();
+
+            if (value > 100) {
+                value = 100;
+            }
+
+            if (value < 0) {
+                value = 0;
+            }
+
+            $("#UserTickets").val(value);
+            $('#oppResult').val(100 - value);
+        });
+
+
+    </script>
+    
+}
+
+@if (res == 0)
+{
+    <div>
+       Przegrałeś grę...
+    </div>
+}
