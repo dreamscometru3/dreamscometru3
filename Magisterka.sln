@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magisterka", "Magisterka\Magisterka.csproj", "{89E7A73D-E4FB-45C1-8501-788F9FC85B7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwe", "qwe\qwe.csproj", "{08241457-2EB4-4949-A6D2-17E5F0A8C169}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{89E7A73D-E4FB-45C1-8501-788F9FC85B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E7A73D-E4FB-45C1-8501-788F9FC85B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89E7A73D-E4FB-45C1-8501-788F9FC85B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08241457-2EB4-4949-A6D2-17E5F0A8C169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08241457-2EB4-4949-A6D2-17E5F0A8C169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08241457-2EB4-4949-A6D2-17E5F0A8C169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08241457-2EB4-4949-A6D2-17E5F0A8C169}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,7 @@ namespace Magisterka.Database
 
         public ClientCodeRepository ClientCodeRepository { get { return new ClientCodeRepository(this.dbContext);} }
         public SurveyRepository SurveyRepository { get {  return new SurveyRepository(this.dbContext);} }
+        public LotteryRepository LotteryRepository { get {  return new LotteryRepository(this.dbContext);} }
 
         public Repository()
         {

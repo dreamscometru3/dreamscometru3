@@ -19,5 +19,10 @@ namespace Magisterka.Controllers
 
             return httpCookie != null ? Server.UrlDecode(httpCookie.Value) : "";
         }
+
+        public bool IsClientCode()
+        {
+            return string.IsNullOrEmpty(this.Load("ClientCode"));
+        }
     }
 }

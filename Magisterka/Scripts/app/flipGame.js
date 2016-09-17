@@ -37,7 +37,7 @@
 
         finishCountDown: function () {
             alert('Nie wybrałeś odpowiedzi. W normalnej grze będzie to skutkowało utratą punktów.')
-            console.log('Finish Countdown')
+            console.log('Finish Countdown');
         },
 
         setTime: function (count) {

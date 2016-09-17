@@ -24,6 +24,7 @@
         1
     ];
     userPoints = 0;
+    opponentPoints = 0;
     failedAnwserd = 0;
     currentGroup = 0;
     result = [];
@@ -32,7 +33,7 @@
     gameIsFinished = false;
     roundIsFinished = false;
     currentIndex = 0;
-    modal = "#modal"
+    modal = "#modal";
 
     return {
         init: function (isTest) {
@@ -44,7 +45,7 @@
             
         },
         selectGroup: function () {
-            var randomGroup = Math.round(Math.random() * 3);
+            var randomGroup = Math.round(Math.random() * 2);
             currentGroup = randomGroup;
         },
 
@@ -56,7 +57,7 @@
             $(modal).modal('hide');
             $('.logicImage').attr('src', images[index]);
             this.generateAnsware(index);
-            this.setTime(10);
+            this.setTime(3);
             this.updateGameState();
         },
 
@@ -76,8 +77,7 @@
 
                 if (isChecked) {
                     value = $(this).attr('value');
-                    //result.push(value);
-                    result.push(value)
+                    result.push(value);
                 }
 
                 scope.SelectAnsware();
@@ -91,7 +91,7 @@
                 this.clearCounting();
                 this.startNextRound();
             } else {
-                this.displayScreen(++currentIndex)
+                this.displayScreen(++currentIndex);
             }
 
             console.log(result);
@@ -125,7 +125,7 @@
                 }
             }, 1000);
 
-            timeoutHandles.push(handler)
+            timeoutHandles.push(handler);
         },
 
         updateGameState: function () {
@@ -135,10 +135,10 @@
                 gameIsFinished = true;
 
                 if (isTestGame) {
-                    alert('Teraz rozpoczniesz grę z przeciwnikiem')
+                    alert('Teraz rozpoczniesz grę z przeciwnikiem');
                     window.location.href = "/Game/GameStep3?game=1";
                 } else {
-                    alert('Teraz rozpoczniesz drugą grę')
+                    alert('Teraz rozpoczniesz drugą grę');
                 }
             }
         },
@@ -148,7 +148,7 @@
         },
 
         showModal: function (text) {
-            $(modal).modal({ backdrop: 'static', keyboard: false})
+            $(modal).modal({ backdrop: 'static', keyboard: false });
             $(modal).find('.modal-body').text(text);
         },
 
@@ -160,39 +160,112 @@
 
         startNextRound: function () {
             var scope = this;
-            var timeWaitingForNextRound = Math.floor(Math.random() * 6) + 4;
+            var timeWaitingForNextRound = 1;// Math.round(Math.random() * 6) + 4;
 
 
             setTimeout(function () {
-                scope.displayResults()
-                scope.displayScreen(++currentIndex)
-                scope.calculateReasult
-                
+                scope.calculateReasult();
+                scope.displayResults();
+                scope.displayScreen(++currentIndex);
             }, timeWaitingForNextRound * 1000);
         },
         displayResults: function () {
             $('.resLogicMe').text(userPoints);
-
+            $('.resLogicOpponent').text(opponentPoints);
         },
         calculateReasult: function () {
             var userAnwser = result[currentIndex];
             var correctAnwser = imageAnsware[currentIndex];
+            var i = userAnwser == correctAnwser ? 1 : 0;
+
            
-            if (userAnwser == correctAnwser) {
-                userPoints++;
-            } else {
-                failedAnwserd++;
+            if (currentGroup == 0) {
+                if (i == 1) {
+                    userPoints++;
+                }
+
+                if (i == 0) {
+                    currentGroup = 1;
+                }
             }
-            this.chooseNewGroup()
+
+            if (currentGroup == 1) {
+                if (i == 1) {
+                    var opponentWin = Math.round(Math.random());
+
+                    if (opponentWin == 1 && opponentPoints == 0) {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    if (userPoints == 4 && opponentPoints == 0) {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    if (opponentPoints > 1) {
+                        currentGroup = 2;
+                        return;
+                    }
+
+                    userPoints++;
+                }
+
+                if (i == 0) {
+                    if (opponentPoints == 0 || opponentPoints == 1) {
+                        opponentPoints++;
+                    }
+                }
+
+                if (opponentPoints > 1) {
+                    currentGroup = 2;
+                    return;
+                }
+            }
+
+            if (currentGroup == 2) {
+                if (i == 1) {
+                    var opponentWin = Math.round(Math.random());
+
+                    if (opponentWin == 1 && opponentPoints < 4) {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    if (userPoints == 4 && opponentPoints < 4) {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    userPoints++;
+                }
+
+                if (i == 0) {
+
+                    if (opponentPoints <= 4) {
+                        opponentPoints++;
+                    }
+                }
+            }
+
+            if (opponentPoints == 5) {
+                alert("przegrales!");
+                window.location.href = "/Game/GameStep4?result=2";
+            }
+
+            if (userPoints == 5) {
+                alert("Jebako zwyciezylees!");
+                window.location.href = "/Game/GameStep4?result=1";
+            }
+
+            this.chooseNewGroup();
         },
         chooseNewGroup: function () {
-            if (failedAnwserd == 1) {
+            if (failedAnwserd == 1 && currentGroup == 0) {
                 currentGroup = 1;
-            } else if (failedAnwserd > 1) {
+            } else if (failedAnwserd > 1 && currentGroup == 1) {
                 currentGroup = 2;
             }
-               
-            
         }
     }
 });

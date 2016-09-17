@@ -12,7 +12,7 @@ namespace Magisterka.Database
 
         public void Save(SurveyModel survey)
         {
-            var clientCode = this._repositories.ClientCodeRepository.GetByID(survey.Id);
+            var clientCode = this._repositories.ClientCodeRepository.GetByID(survey.ClientCode.Id);
 
             survey.ClientCode = clientCode;
 
