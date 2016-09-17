@@ -23,7 +23,9 @@
         1,
         1
     ];
-
+    userPoints = 0;
+    failedAnwserd = 0;
+    currentGroup = 0;
     result = [];
     timeoutHandles = [];
     isTestGame = false;
@@ -37,8 +39,13 @@
             console.log('logic game');
 
             isTestGame = isTest;
-
+            this.selectGroup();
             this.initEvents();
+            
+        },
+        selectGroup: function () {
+            var randomGroup = Math.round(Math.random() * 3);
+            currentGroup = randomGroup;
         },
 
         initEvents: function () {
@@ -58,7 +65,7 @@
             var answare = $(".logicAnsware");
             answare.html('');
 
-            for (var i = 0; i < 8; i++) {
+            for (var i = 1; i < 9; i++) {
                 answare.append( "<div><input class='answareChb' value='" + i + "'type='checkbox'> " +  i + "</div>")
             }
 
@@ -69,6 +76,7 @@
 
                 if (isChecked) {
                     value = $(this).attr('value');
+                    //result.push(value);
                     result.push(value)
                 }
 
@@ -154,9 +162,37 @@
             var scope = this;
             var timeWaitingForNextRound = Math.floor(Math.random() * 6) + 4;
 
+
             setTimeout(function () {
-               scope.displayScreen(++currentIndex)
+                scope.displayResults()
+                scope.displayScreen(++currentIndex)
+                scope.calculateReasult
+                
             }, timeWaitingForNextRound * 1000);
+        },
+        displayResults: function () {
+            $('.resLogicMe').text(userPoints);
+
+        },
+        calculateReasult: function () {
+            var userAnwser = result[currentIndex];
+            var correctAnwser = imageAnsware[currentIndex];
+           
+            if (userAnwser == correctAnwser) {
+                userPoints++;
+            } else {
+                failedAnwserd++;
+            }
+            this.chooseNewGroup()
+        },
+        chooseNewGroup: function () {
+            if (failedAnwserd == 1) {
+                currentGroup = 1;
+            } else if (failedAnwserd > 1) {
+                currentGroup = 2;
+            }
+               
+            
         }
     }
 });
