@@ -1,0 +1,113 @@
+﻿
+<div style="margin-top:20px;" class="col-sm-12">
+    <div style="display:none;" class="flip">
+        <h4>
+            Rzut monetą
+        </h4>
+        <div class="results"></div>
+        <div class="timer"></div><div class="clear"></div>
+        <div class="coin coin-r" value="R">R</div>
+        <div class="coin coin-o" value="O">O</div>
+    </div>
+
+    <div style="display:none;" class="logic">
+        <h4>
+           Gra logiczna
+        </h4>
+        <div class="col-sm-7">
+            <img width="100%" class="logicImage" src="" />
+        </div>
+
+        <div class="col-sm-5">
+            <div class="timerLogic"></div>
+            <div class="logicAnsware"></div>
+
+            <div style="" class="resultsLogic">
+                <div class="resLogicMe">
+                    <div class="resLogicOpponent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                test
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .timer{
+        border:1px solid black;
+        width:80px;
+        height:40px;
+        float:right;
+        text-align: center;
+        font-size:24px;
+        font-weight:bold;
+    }
+
+    .timerLogic {
+        border:1px solid black;
+        width:80px;
+        height:40px;
+        float:right;
+        text-align: center;
+        font-size:24px;
+        font-weight:bold;
+    }
+
+    .logicAnsware{
+         float:right;
+        border:1px solid black;
+        width:80px;
+        font-size:20px;
+        min-height:200px;
+        text-align: center;
+    }
+
+    .resultsLogic{
+        float:left;
+        border:1px solid black;
+        width:80px;
+        font-size:20px;
+        min-height:200px;
+        text-align: center;
+    }
+
+    .results {
+        float:right;
+        border:1px solid black;
+        width:80px;
+        font-size:20px;
+        min-height:200px;
+        text-align: center;
+    }
+
+    .coin {
+        cursor:pointer;
+        width: 200px;
+        height: 200px;
+        background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+        background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, orange);
+        background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 20px;
+        text-align:center;
+        color:black;
+        font-size:50px;
+        font-weight:bold;
+        padding-top:65px;
+    }
+    .coin:hover {
+        color:white;
+        background-image: -webkit-radial-gradient(45px 45px, circle cover,red, orange);
+        background-image: radial-gradient(45px 45px 45deg, circle cover, red 0%, orange 100%, red 95%);
+    }
+</style>

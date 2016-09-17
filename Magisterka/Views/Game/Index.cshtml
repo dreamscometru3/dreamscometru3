@@ -1,0 +1,46 @@
+﻿@model  Magisterka.Models.SurveyModel
+
+@using (Html.BeginForm("SaveSurvey", "Game", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">
+            Nick
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+        </div>
+        
+        <div class="editor-label">
+            Email
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            Wiek
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Age)
+        </div>
+        
+
+        <div class="editor-label">
+           Plec
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>() { new SelectListItem() {Text = "Kobieta"}, new SelectListItem() {Text = "Mężczyzna"}})
+        </div>
+        
+        <input type="hidden" name="Id" value="@Model.Id"/>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ClientCode.Id)
+
+        <p style="margin-top: 20px;">
+            <input type="submit" value="Wysllij ankiete" />
+        </p>
+    </fieldset>
+}
