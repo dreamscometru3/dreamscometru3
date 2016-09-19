@@ -4,31 +4,37 @@
         <h4>
             Rzut monetą
         </h4>
-        <div class="results"></div>
+
         <div class="timer"></div><div class="clear"></div>
         <div class="coin coin-r" value="R">R</div>
         <div class="coin coin-o" value="O">O</div>
+        
+        <div style="" class="resultsLogic col-sm-8">
+            <div style="float:left" class="resultMe">0</div>
+            <div style="float:right" class="resultOpp">0</div>
+        </div>
     </div>
 
     <div style="display:none;" class="logic">
         <div class="col-sm-4">
-            <h4 >Gra logiczna</h4>
+            <h4>Gra logiczna</h4>
         </div>
 
         <div class="col-sm-8">user points</div>
         <div style="" class="resultsLogic col-sm-8">
             <div style="float:left" class="resLogicMe">0</div>
             <div style="float:right" class="resLogicOpponent">0</div>
-        </div></div>
-        
-        <div class="col-sm-7">
-            <img width="100%" class="logicImage" src="" />
         </div>
+    </div>
 
-    @*<div class="col-sm-5">
+    <div class="col-sm-7">
+        <img width="100%" class="logicImage" src="" />
+    </div>
+
+    <div id="logicGame" class="col-sm-5">
         <div class="timerLogic"></div>
         <div class="logicAnsware"></div>
-    </div>*@
+    </div>
 
     <div style="clear:both"></div>
 </div>
@@ -44,55 +50,55 @@
 </div>
 
 <style>
-    .timer{
-        border:1px solid black;
-        width:80px;
-        height:40px;
-        float:right;
+    .timer {
+        border: 1px solid black;
+        width: 80px;
+        height: 40px;
+        float: right;
         text-align: center;
-        font-size:24px;
-        font-weight:bold;
+        font-size: 24px;
+        font-weight: bold;
     }
 
     .timerLogic {
-        border:1px solid black;
-        width:80px;
-        height:40px;
-        float:right;
+        border: 1px solid black;
+        width: 80px;
+        height: 40px;
+        float: right;
         text-align: center;
-        font-size:24px;
-        font-weight:bold;
+        font-size: 24px;
+        font-weight: bold;
     }
 
-    .logicAnsware{
-         float:right;
-        border:1px solid black;
-        width:80px;
-        font-size:20px;
-        min-height:200px;
+    .logicAnsware {
+        float: right;
+        border: 1px solid black;
+        width: 80px;
+        font-size: 20px;
+        min-height: 200px;
         text-align: center;
     }
 
-    .resultsLogic{
-        float:right;
-        border:1px solid black;
-        width:200px;
-        font-size:20px;
-        min-height:30px;
+    .resultsLogic {
+        float: right;
+        border: 1px solid black;
+        width: 200px;
+        font-size: 20px;
+        min-height: 30px;
         text-align: center;
     }
 
     .results {
-        float:right;
-        border:1px solid black;
-        width:80px;
-        font-size:20px;
-        min-height:200px;
+        float: right;
+        border: 1px solid black;
+        width: 80px;
+        font-size: 20px;
+        min-height: 200px;
         text-align: center;
     }
 
     .coin {
-        cursor:pointer;
+        cursor: pointer;
         width: 200px;
         height: 200px;
         background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
@@ -101,15 +107,16 @@
         border-radius: 50%;
         display: inline-block;
         margin-right: 20px;
-        text-align:center;
-        color:black;
-        font-size:50px;
-        font-weight:bold;
-        padding-top:65px;
+        text-align: center;
+        color: black;
+        font-size: 50px;
+        font-weight: bold;
+        padding-top: 65px;
     }
-    .coin:hover {
-        color:white;
-        background-image: -webkit-radial-gradient(45px 45px, circle cover,red, orange);
-        background-image: radial-gradient(45px 45px 45deg, circle cover, red 0%, orange 100%, red 95%);
-    }
+
+        .coin:hover {
+            color: white;
+            background-image: -webkit-radial-gradient(45px 45px, circle cover,red, orange);
+            background-image: radial-gradient(45px 45px 45deg, circle cover, red 0%, orange 100%, red 95%);
+        }
 </style>

@@ -13,6 +13,7 @@
                     scope.initGame(game, isTest);
                 });
             }
+            $("#logicGame").hide();
         },
 
         initGame: function (game, isTest) {
