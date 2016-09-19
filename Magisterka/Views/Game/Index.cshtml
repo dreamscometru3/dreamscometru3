@@ -5,42 +5,106 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
+    
     <fieldset>
-        <div class="editor-label">
+        <p class="form-text text-center center-block">
+            Zanim rozpoczniesz badanie wypełnij proszę podstawowe dane, a następnie naciśnij
+
+            przycisk dalej.
+            <br />
+            <br />
+                
+        </p>
+        @*<div class="editor-label">
             Nick
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
-        </div>
+        </div>*@
         
-        <div class="editor-label">
+        @*<div class="editor-label">
             Email
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Email)
-        </div>
+        </div>*@
 
-        <div class="editor-label">
-            Wiek
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Age)
-        </div>
-        
+        <div class="one">
+            <div class="editor-label ">
+                Wiek
+            </div>
 
-        <div class="editor-label">
-           Plec
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Age)
+            </div>
+
+
+            <div class="editor-label">
+                Płeć
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>() { new SelectListItem() { Text = "Kobieta" }, new SelectListItem() { Text = "Mężczyzna" } })
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>() { new SelectListItem() {Text = "Kobieta"}, new SelectListItem() {Text = "Mężczyzna"}})
-        </div>
-        
         <input type="hidden" name="Id" value="@Model.Id"/>
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.ClientCode.Id)
 
         <p style="margin-top: 20px;">
-            <input type="submit" value="Wysllij ankiete" />
+            <input type="submit" value="Dalej" />
         </p>
     </fieldset>
+    <style>
+        
+        .form-text {
+            
+            font-size: 20px;
+            width:80%;
+            background-color:lightgreen;
+            padding:10px;
+
+         }   
+        fieldset {
+            background-color:lightgreen; 
+            width:80%; 
+            padding: 10px 20px;
+        }
+        .one {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+
+        }
+        .editor-label {
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        .editor-field {
+            flex: 1;
+
+        }
+        input {
+            padding: 10px 20px;
+            margin: auto;
+            display: block;
+            
+        }
+        input[type=submit] {
+            
+            margin: auto;
+            display: block;
+            width: 100px;   
+            
+                    
+            }
+       .editor-label {
+           
+           padding: 10px 0 ;
+       }
+        #Gender {
+            width: 80%;
+            height: 40px;   
+        }
+        
+    </style>
 }

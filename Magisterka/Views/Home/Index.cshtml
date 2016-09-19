@@ -1,29 +1,25 @@
 ﻿@model Magisterka.ViewModels.HomeIndexViewModel
 
 @section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Wpisz Kod</h1>
+    <section class="featured" style="padding-top: 20px;">
+        <div class="content-wrapper ">
+            <hgroup class="title" >
+                <h1 >Witam na stronie badania!</h1>
             </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+            <p style="color: black;font-size: 18px ; ">
+                Żeby wziąć w nim udział musisz wpisać odpowiedni klucz. Pamiętaj, że klucze pozwalają na zalogowanie się tylko o określonej porze (do 20 minut od godziny która została zadeklarowana).
             </p>
             
             <div style="margin-top: 40px; padding: 40px; clear: both" class="col-sm-12">
                 @using (Html.BeginForm())
                 {
-                    <div class="editor-field" style="width: 300px; float:left">
+                    <div class="editor-field" style="width: 300px; margin-left: 120px; float:left; margin-top:3px;" >
                         @Html.EditorFor(model => model.Code)
                         @Html.ValidationMessageFor(model => model.Code)
                     </div>
 
                     <p style="margin-left: 50px; width:200px; float: left;">
-                        <input  type="submit" class="btn btn-primary" style="background-color: cadetblue" value="Rozpocznij" />
+                        <input  type="submit" class="btn btn-primary" style="background-color: seagreen; border: none;" value="Przejdź dalej" />
                     </p>
                 }
                 

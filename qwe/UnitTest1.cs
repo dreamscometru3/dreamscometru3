@@ -85,6 +85,17 @@ namespace qwe
 
             Assert.AreEqual(5, game.opponentPoints);
         }
+
+        [TestMethod]
+        public void TossMethod()
+        {
+            var game = new TossLogic(2, new List<int>() { 1, 1, 1, 1, 1, 1, 1, 1, 1 });
+
+            Assert.AreEqual(4, game.opponentPoints);
+            Assert.AreEqual(5, game.userPoints);
+        }
+
+
     }
 }
 
@@ -96,10 +107,13 @@ public class GameLogic
 
     public bool stop = false;
 
-    private int _startGroup;
-    private List<int> _answares; 
+    private int _startGroup = 0;
+    private List<int> _answares;
 
     private Random rand = new Random();
+
+    
+
 
     public GameLogic(int startGroup, List<int> answares)
     {
@@ -115,9 +129,9 @@ public class GameLogic
         {
             if (!stop)
             {
-                this.CalculateResult(_answares[i]);     
+                this.CalculateResult(_answares[i]);
             }
-           
+
         }
     }
 
@@ -143,7 +157,7 @@ public class GameLogic
 
         if (this._startGroup == 1)
         {
-            if(i == 1)
+            if (i == 1)
             {
                 var opponentWin = rand.Next(2);
 
@@ -211,7 +225,7 @@ public class GameLogic
 
             if (i == 0)
             {
-                
+
                 if (opponentPoints <= 4)
                 {
                     opponentPoints++;
@@ -225,3 +239,139 @@ public class GameLogic
         }
     }
 }
+public class TossLogic
+    {
+        public int rounds = 0;
+        public int userPoints = 0;
+        public int opponentPoints = 0;
+
+        public bool stop = false;
+
+
+        private Random rand = new Random();
+        private int _startGroup = 0;
+        private int _startTossGroup;
+        private List<int> _answaresToss;
+
+        public TossLogic(int startGroup, List<int> answares)
+        {
+            this._startTossGroup = startGroup;
+            this._answaresToss = answares;
+
+            this.Start2();
+        }
+
+        private void Start2()
+        {
+            for (var i = 0; i < this._answaresToss.Count; i++)
+            {
+                if (!stop)
+                {
+                    this.CalculateTossResult(_answaresToss[i]);
+                }
+            }
+        }
+
+        private void CalculateTossResult(int v)
+        {
+            if (this._startTossGroup == 0)
+            {
+                if (v == 1)
+                {
+                    this.userPoints++;
+                }
+                if (v == 0)
+                {
+                    _startTossGroup = 1;
+                }
+
+                if (userPoints == 5)
+                {
+                    stop = true;
+                }
+
+            }
+            else if (this._startTossGroup == 1)
+            {
+                if (v == 1)
+                {
+                    var opponentWin = rand.Next(2);
+
+                    if (opponentWin == 1 && opponentPoints == 0)
+                    {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    if (userPoints == 4 && opponentPoints == 0)
+                    {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    if (opponentPoints > 1)
+                    {
+                        this._startTossGroup = 2;
+                        return;
+                    }
+
+                    userPoints++;
+                }
+
+                if (v == 0)
+                {
+                    if (opponentPoints == 0 || opponentPoints == 1)
+                    {
+                        opponentPoints++;
+                    }
+                }
+
+                if (opponentPoints > 1)
+                {
+                    this._startTossGroup = 2;
+                    return;
+                }
+
+                if (userPoints == 5)
+                {
+                    stop = true;
+                }
+            }
+            if (this._startTossGroup == 2)
+            {
+                if (v == 1)
+                {
+                    var opponentWin = rand.Next(2);
+
+                    if (opponentWin == 1 && opponentPoints < 4)
+                    {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    if (userPoints == 4 && opponentPoints < 4)
+                    {
+                        opponentPoints++;
+                        return;
+                    }
+
+                    userPoints++;
+                }
+
+                if (v == 0)
+                {
+
+                    if (opponentPoints <= 4)
+                    {
+                        opponentPoints++;
+                    }
+                }
+
+                if (userPoints == 5 || opponentPoints == 5)
+                {
+                    stop = true;
+                }
+            }
+
+        }
+    }

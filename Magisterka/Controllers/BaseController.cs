@@ -22,7 +22,7 @@ namespace Magisterka.Controllers
 
         public bool IsClientCode()
         {
-            return string.IsNullOrEmpty(this.Load("ClientCode"));
+            return !string.IsNullOrEmpty(this.Load("ClientCode"));
         }
     }
 }
